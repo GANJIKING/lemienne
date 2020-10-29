@@ -28,26 +28,19 @@
 		<property name="password" value="wkfwhagk3^^"></property>
 	</bean>
 	
-	<!-- SqlSessionnFactory객체 : connection생성,처리 
-	    SqlSessionFactoryBean객체(스프링) 
-	-->
+	<!-- SqlSessionnFactory객체 : connection생성,처리 SqlSessionFactoryBean객체(스프링) -->
 	<bean id="sqlSessionFactory"
 	 class="org.mybatis.spring.SqlSessionFactoryBean">
 	   <property name="dataSource" ref="dataSource" />
 	   <property name="configLocation" 
 	             value="classpath:/mybatis-config.xml"
 	   ></property>
-	   <!-- 
-	   XML(Mapper) 파일을 MyBatis에서 인식하도록 처리 
-	    -->
+	   <!-- XML(Mapper) 파일을 MyBatis에서 인식하도록 처리 -->
 	   <property name="mapperLocations"
-	             value="classpath:mappers/**/*Mapper.xml"	   
-	   ></property>	   
+	             value="classpath:mappers/**/*Mapper.xml" ></property>	   
 	</bean>
 	
-	<!-- SqlSessionTemplate 객체를 생성
-	     해당 객체는 SqlSessionFactory 객체를 생성자 형태로 주입
-	 -->
+	<!-- SqlSessionTemplate 객체를 생성 해당 객체는 SqlSessionFactory 객체를 생성자 형태로 주입 -->
 	 <bean id="sqlSession"
 	       class="org.mybatis.spring.SqlSessionTemplate"
 	       destroy-method="clearCache"
@@ -61,13 +54,12 @@
 	<!-- 
 	 Repository 어노테이션을 설정하고,
 	       설정파일에서 스캔하도록 설정 -->
+	<context:component-scan base-package="com.lamienne.persistence" />
+
+	<!-- Repository 어노테이션을 설정하고,
+	       설정파일에서 스캔하도록 설정
 	<context:component-scan 
-	     base-package="com.lamienne.persistence" />
-<!-- 
-	Repository 어노테이션을 설정하고,
-	       설정파일에서 스캔하도록 설정-->
-	<context:component-scan 
-	     base-package="com.lamienne.service" /> 
+	     base-package="com.lamienne.service" /> -->
 	     
 	
 </beans>
